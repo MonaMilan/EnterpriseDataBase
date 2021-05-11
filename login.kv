@@ -1,0 +1,902 @@
+MainWindow:
+    login:
+    window1:
+    window2:
+
+<login>:
+    name:"login"
+
+    username: username
+    password: password
+
+    FloatLayout:
+
+        Label:
+            size_hint: 0.4, 0.2
+            pos_hint: {"x":0.1, "top":0.8}
+            text: "userName "
+
+        TextInput:
+            size_hint: 0.4, 0.2
+            pos_hint: {"x":0.5, "top":0.8}
+            id: username
+            multiline:False
+
+        Label:
+            size_hint: 0.4, 0.2
+            pos_hint: {"x":0.1, "top":0.55}
+            text: "Password "
+
+        TextInput:
+            size_hint: 0.4, 0.2
+            pos_hint: {"x":0.5, "top":0.55}
+            id: password
+            password:True
+            multiline:False
+
+        Button:
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":0.3}
+            text:"login"
+            on_release: root.submit()
+
+<window1>:
+    name:"second"
+
+    Button:
+        text:"customer"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.8}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="Customer_main"
+
+
+    Button:
+        text:"Product"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.6}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="Product_main"
+
+    Button:
+        text:"previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="login"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+
+<Product_main>:
+    name:"Product_main"
+
+    Button:
+        text:"previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="second"
+    Button:
+        text:"Product information"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.8}
+        on_release:
+            app.root.current="Product_information"
+
+    Button:
+        text:"Add New Product"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.6}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="Add_Product"
+
+    Button:
+        text:"Update Product"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.4}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="update_product"
+
+
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+
+<Add_Product>:
+
+    p_id: p_id
+    qty: qty
+    p_name: p_name
+    p_rate:p_rate
+
+    name:"Add_Product"
+
+    Label:
+        text:"Name:"
+        pos_hint:{"x":0.2,"top":0.8}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:p_name
+        pos_hint:{"x":0.5,"top":0.8}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Product ID:"
+        pos_hint:{"x":0.2,"top":0.7}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:p_id
+        pos_hint:{"x":0.5,"top":0.7}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Stock Quantity:"
+        pos_hint:{"x":0.2,"top":0.6}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:qty
+        pos_hint:{"x":0.5,"top":0.6}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Product Rate"
+        pos_hint:{"x":0.2,"top":0.5}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:p_rate
+        pos_hint:{"x":0.5,"top":0.5}
+        size_hint:0.3,0.1
+        multiline:False
+
+
+    Button:
+        text:"Add"
+        pos_hint:{"x":0.4,"top":0.4}
+        size_hint:0.2,0.1
+        multiline:False
+        on_release: root.add()
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Product_main"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+
+
+<Product_info>:
+
+    l:l
+    l1:l1
+    name:"Product_information"
+
+    Button:
+        text:"Refresh"
+        size_hint:0.1,0.05
+        pos_hint:{"top":1}
+        on_release:
+            root.display_from_file()
+    Label:
+        id:l1
+        text:"INFORMATION:"
+        size_hint: 1,None
+        pos_hint:{"top":1}
+
+    Label:
+        id:l
+        text_size: self.width, None
+        size_hint: 1,None
+        pos_hint:{"top":0.8}
+        font_size:25
+        halign:"center"
+        valign:"middle"
+        height: self.texture_size[1]
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Product_main"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+<update_product>:
+
+    p_name:p_name
+    p_id:p_id
+    qty:qty
+    p_rate:p_rate
+
+    Label:
+        text:"Name:"
+        pos_hint:{"x":0.2,"top":0.8}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:p_name
+        pos_hint:{"x":0.5,"top":0.8}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Product ID:"
+        pos_hint:{"x":0.2,"top":0.7}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:p_id
+        pos_hint:{"x":0.5,"top":0.7}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Stock Quantity:"
+        pos_hint:{"x":0.2,"top":0.6}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:qty
+        pos_hint:{"x":0.5,"top":0.6}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Product Rate:"
+        pos_hint:{"x":0.2,"top":0.5}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:p_rate
+        pos_hint:{"x":0.5,"top":0.5}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Button:
+        text:"Update"
+        pos_hint:{"x":0.4,"top":0.4}
+        size_hint:0.3,0.1
+        on_release:
+            root.update()
+
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Product_main"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+<Customer_main>:
+
+    Button:
+        text:"Customer Info"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.8}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="Customer_information"
+
+    Button:
+        text:"Add Customer"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.6}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="Add_Customer"
+
+    Button:
+        text:"Update Customer"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.4}
+        on_release:
+            app.root.current="update_customer"
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="second"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+<Add_Customer>:
+
+    c_name: c_name
+    c_id: c_id
+    c_email: c_email
+    c_num: c_num
+    c_area: c_area
+
+    Label:
+        text:"Name:"
+        pos_hint:{"x":0.2,"top":0.9}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_name
+        pos_hint:{"x":0.5,"top":0.9}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Customer Id:"
+        pos_hint:{"x":0.2,"top":0.8}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_id
+        pos_hint:{"x":0.5,"top":0.8}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Area:"
+        pos_hint:{"x":0.2,"top":0.7}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_area
+        pos_hint:{"x":0.5,"top":0.7}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Contact Number:"
+        pos_hint:{"x":0.2,"top":0.6}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_num
+        multiline:False
+        pos_hint:{"x":0.5,"top":0.6}
+        size_hint:0.3,0.1
+
+
+    Label:
+        text:"Email ID:"
+        pos_hint:{"x":0.2,"top":0.5}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_email
+        pos_hint:{"x":0.5,"top":0.5}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Button:
+        text:"Add"
+        pos_hint:{"x":0.4,"top":0.4}
+        size_hint:0.2,0.1
+        on_release:
+            root.add()
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_main"
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+
+
+<Customer_info>:
+
+
+    l:l
+    ScrollView:
+        Label:
+            id:l
+            font_size:20
+            text_size: self.width, None
+            size_hint:0.6,0.6
+            pos_hint:{"top":0.8}
+            height: self.texture_size[1]
+
+    Button:
+        text:"Refresh"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.9,"top":1}
+        on_release:
+            root.display_from_file()
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_main"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+    Button:
+        text:"View Full Details"
+        size_hint:0.3,0.1
+        pos_hint:{"x":0.3,"top":0.1}
+        on_release:
+            root.manager.transition.direction = "left"
+            app.root.current="Customer_info2"
+
+
+<customer_info2>:
+
+    v:v
+    cid:cid
+
+    Label:
+        id:v
+        size_hint:0.6,0.6
+        pos_hint:{"x":0.1,"top":0.8}
+        text_size: self.size
+        halign:'left'
+        valign: 'top'
+
+    Button:
+        text:"Take Order"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.4}
+        on_release:
+            root.cid_store()
+            root.manager.transition.direction = "left"
+            app.root.current="Order1"
+
+    Button:
+        text:"Update Order"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.3}
+        on_release:
+            root.cid_store()
+            root.manager.transition.direction = "left"
+            app.root.current="update_order"
+
+    Button:
+        text:"View History"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.2}
+        on_release:
+            root.cid_store()
+            root.manager.transition.direction = "left"
+            app.root.current="view_order"
+
+
+
+    Label:
+        text:"Enter Cid"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.2,"top":0.95}
+
+    TextInput:
+        id: cid
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.5,"top":1}
+        multiline:False
+
+    Button:
+        text:"search"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.4,"top":1}
+        on_release:
+            root.view()
+
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_information"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop();
+
+<Order1>
+    oid:oid
+    pid:pid
+    qty:qty
+    date_:date_
+
+    Label:
+        text:"Product id:"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.3,"top":0.7}
+
+    TextInput:
+        id: pid
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.5,"top":0.7}
+
+    Label:
+        text:"Quantity"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.3,"top":0.6}
+
+    TextInput:
+        id: qty
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.5,"top":0.6}
+
+    Button:
+        text:"Add"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.5}
+        on_release:
+            root.add()
+
+    Label:
+        text:"Date:"
+        size_hint:0.1,0.05
+        pos_hint:{"top":1}
+
+    TextInput:
+        id:date_
+        text:str(root.set_date())
+        size_hint:0.15,0.05
+        pos_hint:{"x":0.1,"top":1}
+
+    Label:
+        text:"Order Id"
+        size_hint:0.1,0.05
+        pos_hint:{"top":0.9}
+
+    TextInput:
+        id:oid
+        text:root.order_id()
+        size_hint:0.15,0.05
+        pos_hint:{"x":0.1,"top":0.9}
+
+
+    Button:
+        text:"Pay now"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.4,"top":0.4}
+        on_release:
+            root.paynow()
+            root.manager.transition.direction = "left"
+
+    Button:
+        text:"Pay Later"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.5,"top":0.4}
+        on_release:
+            root.paylater()
+            root.manager.transition.direction = "left"
+
+
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_info2"
+
+
+<Order2>:
+
+    l:l
+
+    Label:
+        id:l
+        size_hint:0.8,0.8
+        pos_hint:{"x":0.1,"top":0.9}
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Order1"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop();
+
+    Button:
+        text:"Refresh"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.9,"top":1}
+        on_release:
+            root.show()
+
+
+<update_customer>:
+
+    c_name: c_name
+    c_id: c_id
+    c_email: c_email
+    c_contact: c_contact
+    c_address: c_address
+    c_out_amt:c_out_amt
+
+    Label:
+        text:"Name:"
+        pos_hint:{"x":0.2,"top":0.9}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_name
+        pos_hint:{"x":0.5,"top":0.9}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Customer Id:"
+        pos_hint:{"x":0.2,"top":0.8}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_id
+        pos_hint:{"x":0.5,"top":0.8}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Area:"
+        pos_hint:{"x":0.2,"top":0.7}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_address
+        pos_hint:{"x":0.5,"top":0.7}
+        size_hint:0.3,0.1
+        multiline:False
+
+    Label:
+        text:"Contact Number:"
+        pos_hint:{"x":0.2,"top":0.6}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_contact
+        multiline:False
+        pos_hint:{"x":0.5,"top":0.6}
+        size_hint:0.3,0.1
+
+
+    Label:
+        text:"Email ID:"
+        pos_hint:{"x":0.2,"top":0.5}
+        size_hint:0.3,0.1
+
+    Label:
+        text:"Outstanding Amount:"
+        pos_hint:{"x":0.2,"top":0.4}
+        size_hint:0.3,0.1
+
+    TextInput:
+        id:c_out_amt
+        pos_hint:{"x":0.5,"top":0.4}
+        size_hint:0.3,0.1
+        multiline:False
+
+
+
+
+    TextInput:
+        id:c_email
+        pos_hint:{"x":0.5,"top":0.5}
+        size_hint:0.3,0.1
+
+
+    Button:
+        text:"Update"
+        pos_hint:{"x":0.4,"top":0.3}
+        size_hint:0.2,0.1
+        on_release:
+            root.custupdate()
+
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_main"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+<update_order>:
+
+    status:status
+    oid:oid
+
+    Label:
+        text:"Order Id"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.3,"top":0.65}
+
+    TextInput:
+        id:oid
+        multiline:False
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.5,"top":0.65}
+
+    Label:
+        text:"Status"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.3,"top":0.55}
+
+    TextInput:
+        id:status
+        multiline:False
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.5,"top":0.55}
+
+    Button:
+        text:"Update"
+        size_hint:0.2,0.1
+        pos_hint:{"x":0.4,"top":0.45}
+        on_release:
+            root.update_order()
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_info2"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+<view_order>:
+
+    l:l
+
+    Label:
+        id:l
+        size_hint:0.8,0.6
+        pos_hint:{"x":0.1,"top":0.9}
+        text_size: self.size
+        font_size:20
+        halign:'center'
+        valign: 'top'
+
+
+    Button:
+        text:"Refresh"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.9,"top":1}
+        on_release:
+            root.view()
+
+    Button:
+        text:"View Full Details"
+        size_hint:0.3,0.1
+        pos_hint:{"x":0.35,"top":0.1}
+        on_release:
+            app.root.current="view_order2"
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="Customer_info2"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+<view_order2>:
+    l:l
+    oid:oid
+
+    Label:
+        id:l
+        size_hint:0.8,0.6
+        pos_hint:{"x":0.1,"top":0.9}
+        text_size: self.size
+        halign:'center'
+        valign: 'top'
+
+
+    Button:
+        text:"Refresh"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.9,"top":1}
+        on_release:
+            root.view()
+
+    Button:
+        text:"Search"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.3,"top":1}
+        on_release:
+            root.view()
+
+    TextInput:
+        id:oid
+        text:"Enter Oid"
+        size_hint:0.1,0.05
+        pos_hint:{"x":0.4,"top":1}
+
+
+    Button:
+        text:"Previous"
+        size_hint:0.1,0.1
+        on_release:
+            root.manager.transition.direction = "right"
+            app.root.current="view_order"
+
+    Button:
+        text:"Exit"
+        size_hint:0.1,0.1
+        pos_hint:{"x":0.90}
+        on_release:app.stop()
+
+
+
+
+
